@@ -1,0 +1,60 @@
+/*
+
+a b sel out
+0 0 0   0
+0 1 0   0
+1 0 0   1			a AND notb AND notsel
+1 1 0   1			a AND b AND notsel
+0 0 1   0
+0 1 1   1			nota AND b AND sel
+1 0 1   0			
+1 1 1   1			a AND b AND sel 
+
+
+[(a ^ ~b ^ ~sel) v (a ^ b ^ ~sel)] v [(~a ^ b ^ sel) v (a ^ b ^ sel)]
+
+1. 	(a ^ ~b ^ ~sel) v a
+	(a v a) ^ (~b v a) ^ (~sel v a)
+	a ^ [(~b v a) ^ (~sel v a)]
+	a ^ [(~b v a) ^ ~sel] v [(~b v a) ^ a]
+	a ^ [(~b v a) ^ ~sel] v a
+	(a ^ ~b) v a v a
+	(a ^ ~b) v a
+	~b
+
+2. 	(a ^ ~b ^ ~sel) v b
+	(a v b) ^ (~b v b) ^ (~sel v b)
+	(a v b) ^ T ^ (~sel v b)
+	(a v b) ^ (~sel v b)
+	[(a v b) ^ ~sel] v [(a v b) ^ b]
+	[(a v b) ^ ~sel] v b
+	(a ^ ~sel) v (b ^ ~sel) v b
+	(a ^ ~sel) v b
+
+3. 	(a ^ ~b ^ ~sel) v ~sel
+	(a v ~sel) ^ (~b v ~sel) ^ ~sel
+	[(a v ~sel) ^ ~b] v [(a v ~sel) ^ ~sel] ^ ~sel
+	[(a ^ ~b) v (~sel ^ ~b)] v [(a ^ ~sel) v ~sel] ^ ~sel
+	[(a ^ ~b) v ~sel] ^ [(a ^ ~b) v ~b)] v [(a v ~sel) ^ ~sel] ^ ~sel
+	[(a v ~sel) ^ (~b v ~sel)] ^ ~b v [(a ^ ~sel) v ~ sel] ^ ~sel
+	[(a v ~sel) ^ (~b v ~sel)] ^ ~b v ~sel ^ ~sel
+	[(a v ~sel) ^ (~b v ~sel)] ^ ~b v ~sel
+	[(a v ~sel) ^ ~b] v [(a v ~sel) ^ ~sel] ^ ~b v ~sel
+	[(a v ~sel) ^ ~b] v  ~sel ^ ~b v ~sel
+	(a ^ ~b) v (~sel ^ ~b) v  ~sel ^ ~b v ~sel
+	(a ^ ~b) v [(~sel ^ ~b) v  ~sel] ^ ~b
+	(a v ~sel) ^ (~b v ~sel) ^ ~b
+	a v ~sel ^ ~b
+
+
+
+
+
+
+
+
+
+[]
+
+
+*/

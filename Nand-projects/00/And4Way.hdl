@@ -1,0 +1,12 @@
+/*
+ * ANDs together all 4 bits of the input.
+ */
+CHIP And4Way {
+	IN a[4];
+	OUT out;
+
+	PARTS:
+		AND (a=a[0], b=a[1], out=t01);
+		AND (a=t01, b=a[2], out=t02);
+		AND (a=t02, b=a[3], out=out);
+}
